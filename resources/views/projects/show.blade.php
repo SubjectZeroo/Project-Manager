@@ -5,10 +5,10 @@
 </head>
 <body>
 
-    <h1>{{  $project->title }}</h1>
-    <div>{{ $project->description }}</div>
+    <h1>{{ $project->title }}</h1>
+    <div>{{$project->description }}</div>
 
 </body>
-</html></html>ww
+</html></html>
 
 
