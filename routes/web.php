@@ -22,11 +22,14 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get( '/projects',[App\Http\Controllers\ProjectsController::class, 'index']);
+    Route::get( '/projects/create',[App\Http\Controllers\ProjectsController::class, 'create']);
     Route::get( '/projects/{project}',[App\Http\Controllers\ProjectsController::class, 'show']);
     Route::post('/projects', [App\Http\Controllers\ProjectsController::class, 'store']);
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
