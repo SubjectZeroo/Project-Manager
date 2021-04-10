@@ -14,13 +14,34 @@
             <div class="col-sm-12 col-lg-8 mb-4">
                 <div>
                     <div class="mb-5">
-                        @foreach ($project->tasks as $task)
+                        @forelse ($project->tasks as $task)
                         <div class="card mb-3">
                             <div class="card-body">
-                                {{ $task->body }}
+                                <form method="POST" action="{{$task->path()}}" >
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="d-flex  justify-content-between ">
+                                        <input name="body" id="body" class="form-control mr-3 border-0 {{ $task->completed ? 'text-muted' : '' }}" type="text" value="{{ $task->body }}" >
+                                        <input name="completed" type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                No se agregaron tareas Todavia...
+                            </div>
+                        </div>
+                        @endforelse
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                                    @csrf
+                                    <input class="w-100" id="body" name="body"  placeholder="Agregar una nueva tarea">
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-4">
                         <h2 class="text-muted">Notas Generales</h2>

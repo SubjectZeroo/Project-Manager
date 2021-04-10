@@ -9,4 +9,19 @@ class Task extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected $touches =['projects'];
+
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+
+
+    public function path()
+    {
+        return "/projects/{$this->project->id}/tasks/{$this->id}";
+    }
 }
