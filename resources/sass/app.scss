@@ -29,3 +29,13 @@
 
 .border-l-4	{border-left-width: 4px;}
 
+.border-green-300{
+    --tw-border-opacity: 1;
+    border-color: rgba(110, 231, 183, var(--tw-border-opacity));
+}
+
+
+.border-gray-600{
+    --tw-border-opacity: 1;
+    border-color: rgba(75, 85, 99, var(--tw-border-opacity));
+}

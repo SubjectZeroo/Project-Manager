@@ -30,7 +30,8 @@ class ManageProjectsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs(User::factory()->create());
+
+        $this->signIn();
 
         $this->get('/projects/create')->assertStatus(200);
 
@@ -51,8 +52,6 @@ class ManageProjectsTest extends TestCase
     {
 
         $this->be(User::factory()->create());
-
-
 
         $project = Project::factory()->create(['owner_id' => auth()->id()]);
 
