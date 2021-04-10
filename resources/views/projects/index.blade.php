@@ -1,20 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="d-flex justify-content-between  align-items-center mb-3">
-        <h1>Projects</h1>
-        <a href="/projects/create">Crear Nuevo Proyecto</a>
-    </div>
-    <div class="d-flex">
+    <header class="d-flex justify-content-between  align-items-center mb-3 py-3 ">
+        <h2 class="text-muted">Mis Proyectos</h2>
+        <a class="btn btn-info text-white" href="/projects/create">Nuevo Proyecto</a>
+    </header>
+    <main class="row  -mx-3-t">
         @forelse ($projects as $project)
-            <div class="bg-white mr-4 rounded p-4 shadow w-25 ">
-                <h3 class="font-weight-normal py-3">{{ $project->title }}</h3>
-                <div class="text-muted">{{ \Illuminate\Support\Str::limit($project->description, 100) }}</div>
+        <div class="col-sm-12 col-lg-4  px-3-t pb-6-t ">
+            <div class="card p-3 shadow" style="height: 200px">
+                <h3 class="card-title py-3 -ml-5-tw mb-3 border-l-4 pl-4">
+                    <a href="{{ $project->path() }}">  {{ $project->title }}</a>
+                </h3>
+                <div class=" text-muted">
+                    {{ \Illuminate\Support\Str::limit($project->description, 100) }}
+                </div>
             </div>
+        </div>
         @empty
             <div>No projects yet.</div>
         @endforelse
-    </div>
+    </main>
 
     {{-- <ul>
 
