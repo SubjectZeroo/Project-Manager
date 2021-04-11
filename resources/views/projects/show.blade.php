@@ -5,7 +5,7 @@
             <p class="text-muted">
                <a href="/projects">Mis Proyectos</a>  / {{ $project->title }}
             </p>
-            <a class="btn btn-info text-white" href="/projects/create">Nuevo Proyecto</a>
+            <a class="btn btn-info text-white" href="{{ $project->path().'/edit' }} ">Editar Proyecto</a>
 
     </header>
     <main>
@@ -45,7 +45,18 @@
                     </div>
                     <div class="mb-4">
                         <h2 class="text-muted">Notas Generales</h2>
-                        <textarea class="card w-100" style="min-height:200px" name="" id="" cols="30" rows="10"></textarea>
+                        <form method="POST" action="{{ $project->path() }}">
+                            @csrf
+                            @method('PATCH')
+                            <textarea
+                            class="card w-100"
+                            style="min-height:200px"
+                            name="notes"
+                            id="notes"
+                            cols="30"
+                            rows="10">{{ $project->notes }}</textarea>
+                            <button type="submit" class="btn">Guardar</button>
+                        </form>
                     </div>
                 </div>
             </div>
