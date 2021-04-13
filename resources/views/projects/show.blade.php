@@ -61,13 +61,6 @@
                 </div>
             </div>
             <div class="col-sm-12 col-lg-4  px-3">
-                {{-- <div class="card">
-                    <div class="card-body">
-                        <h1>{{ $project->title }}</h1>
-                        <div>{{$project->description }}</div>
-                        <a href="/projects">Ir atras</a>
-                    </div>
-                </div> --}}
                 <div class="card p-3 shadow" style="height: 200px">
                     <h3 class="card-title py-3 -ml-5-tw mb-3 border-l-4 pl-4">
                         <a href="{{ $project->path() }}">  {{ $project->title }}</a>
@@ -75,6 +68,13 @@
                     <div class=" text-muted">
                         {{ \Illuminate\Support\Str::limit($project->description, 100) }}
                     </div>
+                </div>
+                <div class="card  p-3 shadow mt-3">
+                    @foreach ($project->activity as $activity)
+                        <li>
+                            @include("projects.activity.{$activity->description}")
+                        </li>
+                    @endforeach
                 </div>
             </div>
         </div>

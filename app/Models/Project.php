@@ -31,11 +31,16 @@ class Project extends Model
     public function addTask($body)
     {
         return $this->tasks()->create(compact('body'));
+
+        // Activity::create([
+        //     'project_id' => $this->id,
+        //     'description' => 'created_task'
+        // ]);
     }
 
 
     public function activity()
     {
-       return $this->hasMany(Activity::class);
+       return $this->hasMany(Activity::class)->latest();
     }
 }

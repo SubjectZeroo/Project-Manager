@@ -12,6 +12,52 @@ class Task extends Model
 
     protected $touches =['project'];
 
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
+
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+
+    //     static::updated(function($task) {
+
+    //         if (! $task->completed) return;
+    //         Activity::create([
+    //             'project_id'  => $task->project->id,
+    //             'description' => 'completed_task'
+    //         ]);
+    //     });
+
+
+    //     static::updated(function($task) {
+
+    //         if (! $task->completed) return;
+
+    //     });
+
+    // }
+
+    public function complete()
+    {
+        $this->update(['completed' => true]);
+
+        Activity::create([
+            'project_id'  => $this->project->id,
+            'description' => 'completed_task'
+        ]);
+    }
+
+    public function incomplete()
+    {
+        $this->update(['completed' => false]);
+
+        Activity::create([
+            'project_id'  => $this->project->id,
+            'description' => 'incompleted_task'
+        ]);
+    }
 
     public function project()
     {
