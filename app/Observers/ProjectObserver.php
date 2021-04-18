@@ -17,11 +17,19 @@ class ProjectObserver
     {
 
 
-                Activity::create([
-                    'project_id' => $project->id,
-                    'description' => 'created'
-                ]);
+                // Activity::create([
+                //     'project_id' => $project->id,
+                //     'description' => 'created'
+                // ]);
 
+                // $this->recordActivity('created', $project);
+                $project->recordActivity('created');
+
+    }
+
+    public function updating(Project $project)
+    {
+        $project->old = $project->getOriginal();
     }
 
     /**
@@ -33,10 +41,12 @@ class ProjectObserver
     public function updated(Project $project)
     {
 
-                Activity::create([
-                    'project_id' => $project->id,
-                    'description' => 'updated'
-                ]);
+                // Activity::create([
+                //     'project_id' => $project->id,
+                //     'description' => 'updated'
+                // ]);
+
+                $project->recordActivity('updated');
 
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Models\Activity;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('/projects/{project}', [App\Http\Controllers\ProjectsController::class, 'update']);
     Route::post('/projects', [App\Http\Controllers\ProjectsController::class, 'store']);
 
+    Route::post('projects/{project}/invitations', 'App\Http\Controllers\ProjectInvitationsController@store');
 
+    Route::delete('/projects/{project}', [App\Http\Controllers\ProjectsController::class, 'destroy']);
 
     Route::post('/projects/{project}/tasks', [App\Http\Controllers\ProjectTasksController::class, 'store']);
     Route::patch('/projects/{project}/tasks/{task}', [App\Http\Controllers\ProjectTasksController::class, 'update']);

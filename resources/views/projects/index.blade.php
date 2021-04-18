@@ -7,28 +7,29 @@
     </header>
     <main class="row  -mx-3-t">
         @forelse ($projects as $project)
-        <div class="col-sm-12 col-lg-4  px-3-t pb-6-t ">
-            <div class="card p-3 shadow" style="height: 200px">
-                <h3 class="card-title py-3">
-                    <a class="text-dark" href="{{ $project->path() }}">  {{ $project->title }}</a>
-                </h3>
-                <div class=" text-muted">
-                    {{ \Illuminate\Support\Str::limit($project->description, 100) }}
+            <div class="col-sm-12 col-lg-4  px-3-t pb-6-t ">
+                <div class="card p-3 shadow" style="height: 200px">
+                    <h3 class="card-title py-3">
+                        <a class="text-dark" href="{{ $project->path() }}">  {{ $project->title }}</a>
+                    </h3>
+                    <div class=" text-muted">
+                        {{ \Illuminate\Support\Str::limit($project->description, 100) }}
+                    </div>
+                    @can('manage', $project)
+                        <footer>
+
+                            <form method="POST" action="{{ $project->path() }}" class="text-right">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn"  type="submit">Delete</button>
+                            </form>
+                        </footer>
+                    @endcan
                 </div>
             </div>
-        </div>
         @empty
             <div>No projects yet.</div>
         @endforelse
     </main>
-
-    {{-- <ul>
-
-            <li>
-                <a href="{{ $project->path() }}">{{ $project->title }}</a>
-            </li>
-
-
-    </ul> --}}
 @endsection
 

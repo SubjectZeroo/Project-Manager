@@ -15,10 +15,20 @@ class TaskObserver
      */
     public function created(Task $task)
     {
-        Activity::create([
-            'project_id'  => $task->project->id,
-            'description' => 'created_task'
-        ]);
+        // Activity::create([
+        //     'project_id'  => $task->project->id,
+        //     'description' => 'created_task'
+        // ]);
+
+
+        $task->recordActivity('created_task');
+
+    }
+
+
+    public function updating(Task $task)
+    {
+        $task->old =$task->getOriginal();
     }
 
     /**
@@ -29,7 +39,7 @@ class TaskObserver
      */
     public function updated(Task $task)
     {
-        //
+
     }
 
     /**
@@ -40,10 +50,11 @@ class TaskObserver
      */
     public function deleted(Task $task)
     {
-        Activity::create([
-            'project_id'  => $task->project->id,
-            'description' => 'deleted_task'
-        ]);
+        // Activity::create([
+        //     'project_id'  => $task->project->id,
+        //     'description' => 'deleted_task'
+        // ]);
+        $task->project->recordActivity('deleted_task');
     }
 
     /**
