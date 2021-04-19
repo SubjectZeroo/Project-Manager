@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/projects', [App\Http\Controllers\HomeController::class, 'index'])->name('projects');
 
     Route::get( '/projects',[App\Http\Controllers\ProjectsController::class, 'index']);
     Route::get( '/projects/create',[App\Http\Controllers\ProjectsController::class, 'create']);
@@ -38,10 +41,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::patch('/projects/{project}/tasks/{task}', [App\Http\Controllers\ProjectTasksController::class, 'update']);
 
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 
-Auth::routes();
+
 
 

@@ -10037,3 +10037,18 @@ h3 {
   --tw-border-opacity: 1;
   border-color: rgba(75, 85, 99, var(--tw-border-opacity));
 }
+
+.project__tag {
+  position: absolute;
+  top: 0;
+  right: -65px;
+  transform: rotate(45deg);
+  color: #fff;
+  width: 125px;
+  height: 40px;
+  background: linear-gradient(130deg, #b721ff, #21d4fd);
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}

@@ -1,26 +1,38 @@
-<div class="fiel">
-    <label class="label" for="title">titulo</label>
+<div class="form-group">
+    <label class="label" for="title">Titulo del proyecto</label>
     <div class="control">
-        <input class="input" id="title" name="title" placeholder="titulo del proyecto" type="text"
+        <input
+            class="form-control"
+            id="title" name="title"
+            placeholder="Titulo del proyecto"
+            type="text"
             value="{{ $project->title }}">
     </div>
 </div>
-<div class="fiel">
-    <label class="label" for="description">Descripcion</label>
+<div class="form-group">
+    <label class="label" for="description">Descripcion del proyecto</label>
     <div class="control">
-        <textarea class="textarea" name="description" id="description" cols="30" rows="10">
+        <textarea
+                class="form-control"
+                name="description"
+                id="description"
+                cols="30"
+                rows="10">
                 {{ $project->description }}
-            </textarea>
+        </textarea>
     </div>
 </div>
-<div class="field">
+<div class="form-groupd">
     <div class="control">
-        <button type="submit" class="button">{{ $buttonText }}</button>
-        <a href="{{ $project->path() }}">Cancelar</a>
+        <button
+            type="submit"
+            class="btn btn-info text-white font-bold py-2 px-4">{{ $buttonText }}
+        </button>
+        <a class="text-muted" href="{{ $project->path() }}">Cancelar</a>
     </div>
 </div>
 @if ($errors->any())
-    <div class="field">
+    <div class="form-group">
             @foreach ($errors->all as $error)
                 <li>  {{ $error }}</li>
             @endforeach
